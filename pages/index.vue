@@ -14,23 +14,22 @@ export default {
     const allUsersQuery = `query AllMembers {
   AllMembers(filter: {active: {eq: true}}) {
     id
-    bio
-    birthday
     avatar {
       url
     }
-    email
     name
-    phone
-    skills
-    staff
     title
+    bio
+    email
+    skills
+    phone
+    staff
   }}`;
     const res = await fetch("https://graphql.apirocket.io", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.API_ROCKET_READ_KEY}`,
+        Authorization: `Bearer ${process.env.API_ROCKET_KEY}`,
       },
       body: JSON.stringify({ query: allUsersQuery }),
     });

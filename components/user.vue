@@ -6,7 +6,7 @@
     >Equipe o79</div>
     <div class="flex-1 flex flex-col p-8">
       <img
-        class="w-32 h-32 flex-shrink-0 mx-auto bg-black rounded-full"
+        class="w-32 h-32 flex-shrink-0 mx-auto bg-red-500 rounded-full"
         :src="user.avatar.url"
         :alt="`${user.name}`"
       />
