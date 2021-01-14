@@ -20,8 +20,16 @@ export default {
   buildModules: [
     '@nuxtjs/dotenv',
     '@nuxtjs/tailwindcss',
+    'nuxt-graphql-request'
   ],
-
+  graphql: {
+    endpoint: 'https://graphql.apirocket.io',
+    options: {
+      headers: {
+        authorization: `Bearer ${process.env.API_ROCKET_KEY}`,
+      },
+    },
+  },
   modules: [
     '@nuxtjs/pwa',
   ],

@@ -1,0 +1,15 @@
+query AllMembers {
+  AllMembers(filter: { active: { eq: true } }) {
+    id
+    avatar {
+      url
+    }
+    name
+    title
+    bio
+    email
+    skills
+    phone
+    staff
+  }
+}

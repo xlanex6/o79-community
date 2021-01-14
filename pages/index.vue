@@ -9,32 +9,11 @@
 </template>
 
 <script>
+import ALL_MEMBERS from "@/graphql/ALL_MEMBERS.gql";
 export default {
-  async asyncData() {
-    const allUsersQuery = `query AllMembers {
-  AllMembers(filter: {active: {eq: true}}) {
-    id
-    avatar {
-      url
-    }
-    name
-    title
-    bio
-    email
-    skills
-    phone
-    staff
-  }}`;
-    const res = await fetch("https://graphql.apirocket.io", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.API_ROCKET_KEY}`,
-      },
-      body: JSON.stringify({ query: allUsersQuery }),
-    });
-    const rawUsers = await res.json();
-    const users = await rawUsers.data.AllMembers;
+  async asyncData({ $graphql }) {
+    const data = await $graphql.request(ALL_MEMBERS);
+    const users = await data.AllMembers;
     return { users };
   },
 };
