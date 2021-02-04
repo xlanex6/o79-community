@@ -4,7 +4,8 @@ query AllMembers {
     avatar {
       url
     }
-    name
+    lastName
+    firstName
     title
     bio
     email

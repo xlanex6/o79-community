@@ -1,0 +1,12 @@
+mutation MyMutationWithVar($name: String!) {
+  __typename
+  MemberCreate(
+    input: {
+      name: $name
+      bio: "edewdwedwede"
+      birthday: "Thu Jan 14 2021 18:26:59 GMT+0100"
+    }
+  ) {
+    id
+  }
+}

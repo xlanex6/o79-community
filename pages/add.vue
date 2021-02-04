@@ -64,7 +64,7 @@
     <div class="w-1/3 bg-red-500 px-8 pt-12">
 
       <div class="sticky top-12">
-        <h3 class="font-bold text-xl mb-4 text-white">DÉMO</h3>
+        <h3 class="font-bold text-xl mb-4 text-white">Apérçu</h3>
         <user
           :user='user'
           class=""
@@ -77,15 +77,25 @@
 </template>
 
 <script>
+// import CREATE_MEMBER from "@/graphql/CREATE_MEMBER.gql";
+// import raw from "@/graphql/raw.gql";
+import { gql } from "graphql-request";
 export default {
   name: "add",
   data() {
     return {
       fields: [
         {
+          label: "Prénom",
+          placeholder: "Jean Michel",
+          model: "firstName",
+          type: "text",
+          description: "prénom",
+        },
+        {
           label: "Nom",
-          placeholder: "Jean Michel MACHIN",
-          model: "name",
+          placeholder: "MACHIN",
+          model: "lasstName",
           type: "text",
           description: "mettez le prénom puis votre NOM",
         },
@@ -127,14 +137,16 @@ export default {
         },
       ],
       user: {
-        email: "",
-        phone: "",
-        avatar: { url: "" },
+        lastName: "",
+        firstName: "",
         bio: "",
-        name: "",
+        birthday: "",
+        avatar: { url: "" },
+        phone: "",
         skills: [],
         title: "",
         rawSkills: "",
+        email: "",
       },
     };
   },
@@ -150,19 +162,57 @@ export default {
     },
   },
   methods: {
+    queryBuilder() {
+      const input = () => {
+        return {
+          name: this.user.name,
+          bio: this.user.bio,
+          birthday: this.user.birthday,
+          active: true,
+          avatar: this.user.avatar.url,
+          phone: this.user.phone,
+          skills: this.user.skills,
+          staff: false,
+          title: this.user.title,
+          email: this.user.email,
+        };
+      };
+
+      return gql` 
+        mutation(
+        ) {
+          __typename
+          MemberCreate(
+            input: input 
+          ) {
+            id
+            name
+            active
+          }
+      }
+      `;
+    },
     async mutateUser() {
-      const mut = `mutation addMemnber { __typename MemberCreate(input: {name: "${this.user.name}", bio: "${this.user.bio}", birthday: "Thu Jan 14 2021 18:26:59 GMT+0100", avatar: {url: "${this.user.avatar}"}, phone: "${this.user.phone}", skills: "${this.user.skills}", title: "${this.user.title}", email: "${this.user.email}") { id }}`;
+      const cool = () => `
+        mutation MyMutation {
+          __typename
+          MemberCreate(input: {
+        email: ${this.user.email},
+        phone: ${this.user.phone},
+        avatar: ${this.user.avatar.url},
+        bio: ${this.user.bio},
+        name: ${this.user.name},
+        skills: ${this.user.skills},
+        title: ${this.user.title},
+        birthday: "Thu Jan 14 2021 18:26:59 GMT+0100",
+      }) {
+            id
+          }
+        }
+      `;
+      const XX = gql(`${cool}`);
 
-      const send = await fetch("https://graphql.apirocket.io", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.API_ROCKET_KEY}`,
-        },
-        body: JSON.stringify({ query: mut }),
-      });
-
-      const res = await send.json();
+      const res = await this.$graphql.request(XX);
       console.log(res);
     },
   },

@@ -1,0 +1,23 @@
+# mutation merde(
+# ) {
+#   __typename
+#   MemberCreate(
+#     input: {
+#       firstName: $firstName
+#       lastName: $lastName
+#       bio: $bio
+#       birthday: $birthday
+#       active: true
+#       avatar: { url: $avatar }
+#       phone: $phone
+#       skills: $skills
+#       staff: false
+#       title: $title
+#       email: $email
+#     }
+#   ) {
+#     id
+#     name
+#     active
+#   }
+# }
