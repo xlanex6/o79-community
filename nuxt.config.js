@@ -31,7 +31,7 @@ export default {
     },
   },
   modules: [
-    '@nuxtjs/pwa',
+    // '@nuxtjs/pwa',
   ],
   build: {
   }
