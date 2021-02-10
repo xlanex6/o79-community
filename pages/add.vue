@@ -77,11 +77,11 @@
 </template>
 
 <script>
-// import CREATE_MEMBER from "@/graphql/CREATE_MEMBER.gql";
+import CREATE_MEMBER from "@/graphql/CREATE_MEMBER.gql";
 // import raw from "@/graphql/raw.gql";
 import { gql } from "graphql-request";
 export default {
-  name: "add",
+  name: "ADD_MEMBER",
   data() {
     return {
       fields: [
@@ -95,7 +95,7 @@ export default {
         {
           label: "Nom",
           placeholder: "MACHIN",
-          model: "lasstName",
+          model: "lastName",
           type: "text",
           description: "mettez le prénom puis votre NOM",
         },
@@ -193,27 +193,23 @@ export default {
       `;
     },
     async mutateUser() {
-      const cool = () => `
-        mutation MyMutation {
-          __typename
-          MemberCreate(input: {
-        email: ${this.user.email},
-        phone: ${this.user.phone},
-        avatar: ${this.user.avatar.url},
-        bio: ${this.user.bio},
-        name: ${this.user.name},
-        skills: ${this.user.skills},
-        title: ${this.user.title},
-        birthday: "Thu Jan 14 2021 18:26:59 GMT+0100",
-      }) {
-            id
-          }
-        }
-      `;
-      const XX = gql(`${cool}`);
+      const variables = {
+        email: this.user.email,
+        phone: this.user.phone,
+        avatar: this.user.avatar.url,
+        bio: this.user.bio,
+        firstName: this.user.firstName,
+        lastName: this.user.lastName,
+        skills: this.user.skills,
+        title: this.user.title,
+        birthday: Date.now()
+      }
+    
 
-      const res = await this.$graphql.request(XX);
-      console.log(res);
+      const {data} = await this.$graphql.request(CREATE_MEMBER, variables);
+      if (data) {
+        alert('Ajout realisé !!')
+      }
     },
   },
 };
