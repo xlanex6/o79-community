@@ -13,7 +13,7 @@ export default {
     ]
   },
   css: [],
-  plugins: [],
+  plugins: [{src: './plugins/umami.js', ssr: false}],
   components: true,
   buildModules: [
     '@nuxtjs/dotenv',
