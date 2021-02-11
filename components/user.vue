@@ -9,7 +9,7 @@
         v-if="!!user.avatar"
         class="w-32 h-32 flex-shrink-0 mx-auto bg-red-500 rounded-full object-cover"
         :src="user.avatar.url"
-        :alt="`${user.name}`"
+        :alt="`${user.firstName}`"
       />
       <h3 class="mt-6 text-gray-900 text-sm leading-5 font-medium">{{user.firstName}} <span class="uppercase">{{user.lastName}}</span> </h3>
 
