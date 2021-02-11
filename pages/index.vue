@@ -25,26 +25,52 @@
     </div>
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 p-4 ">
       <user
-        v-for="user in users"
-        :key="user.id"
-        :user='user'
+        v-for="result in usersResults"
+        :key="result.id"
+        :user='result'
       />
     </div>
   </div>
 </template>
 
 <script>
+import Fuse from "fuse.js";
 import ALL_MEMBERS from "@/graphql/ALL_MEMBERS.gql";
 export default {
   data() {
     return {
-         searchTerm: '' 
-    }
+      searchTerm: "",
+    };
+  },
+  computed: {
+    usersResults() {
+      return this.searchTerm ? this.results : this.usersFuse._docs;
+    },
+    results() {
+      return this.usersFuse.search(this.searchTerm).map((user) => {
+        return { ...user.item };
+      });
+    },
   },
   async asyncData({ $graphql }) {
     const data = await $graphql.request(ALL_MEMBERS);
     const users = await data.AllMembers;
-    return { users };
+
+    const options = {
+      keys: [
+        "firstName",
+        "lastName",
+        {
+          name: "bio",
+          weight: 2,
+        },
+        "email",
+        { name: "title", weight: 3 },
+        { name: "skills", weight: 2 },
+      ],
+    };
+    const usersFuse = new Fuse(users, options);
+    return { usersFuse };
   },
 };
 </script>
