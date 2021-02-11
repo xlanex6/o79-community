@@ -36,6 +36,11 @@
 <script>
 import ALL_MEMBERS from "@/graphql/ALL_MEMBERS.gql";
 export default {
+  data() {
+    return {
+         searchTerm: '' 
+    }
+  },
   async asyncData({ $graphql }) {
     const data = await $graphql.request(ALL_MEMBERS);
     const users = await data.AllMembers;

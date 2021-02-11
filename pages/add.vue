@@ -78,7 +78,6 @@
 
 <script>
 import CREATE_MEMBER from "@/graphql/CREATE_MEMBER.gql";
-// import raw from "@/graphql/raw.gql";
 import { gql } from "graphql-request";
 export default {
   name: "ADD_MEMBER",
@@ -162,36 +161,6 @@ export default {
     },
   },
   methods: {
-    // queryBuilder() {
-    //   const input = () => {
-    //     return {
-    //       name: this.user.name,
-    //       bio: this.user.bio,
-    //       birthday: this.user.birthday,
-    //       active: true,
-    //       avatar: this.user.avatar.url,
-    //       phone: this.user.phone,
-    //       skills: this.user.skills,
-    //       staff: false,
-    //       title: this.user.title,
-    //       email: this.user.email,
-    //     };
-    //   };
-
-    //   return gql` 
-    //     mutation(
-    //     ) {
-    //       __typename
-    //       MemberCreate(
-    //         input: input 
-    //       ) {
-    //         id
-    //         name
-    //         active
-    //       }
-    //   }
-    //   `;
-    // },
     async mutateUser() {
       const variables = {
         email: this.user.email,
@@ -204,12 +173,16 @@ export default {
         title: this.user.title,
         birthday: Date.now()
       }
-    
 
-      const {data} = await this.$graphql.request(CREATE_MEMBER, variables);
-      if (data) {
-        alert('Ajout réalisé !!')
+      try {
+        const { MemberCreate } = await this.$graphql.request(CREATE_MEMBER, variables);
+        if ( MemberCreate.id) {
+          this.$router.push('/merci')
+        }
+      } catch (error) {
+        console.log(error);
       }
+
     },
   },
 };
