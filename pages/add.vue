@@ -162,36 +162,36 @@ export default {
     },
   },
   methods: {
-    queryBuilder() {
-      const input = () => {
-        return {
-          name: this.user.name,
-          bio: this.user.bio,
-          birthday: this.user.birthday,
-          active: true,
-          avatar: this.user.avatar.url,
-          phone: this.user.phone,
-          skills: this.user.skills,
-          staff: false,
-          title: this.user.title,
-          email: this.user.email,
-        };
-      };
+    // queryBuilder() {
+    //   const input = () => {
+    //     return {
+    //       name: this.user.name,
+    //       bio: this.user.bio,
+    //       birthday: this.user.birthday,
+    //       active: true,
+    //       avatar: this.user.avatar.url,
+    //       phone: this.user.phone,
+    //       skills: this.user.skills,
+    //       staff: false,
+    //       title: this.user.title,
+    //       email: this.user.email,
+    //     };
+    //   };
 
-      return gql` 
-        mutation(
-        ) {
-          __typename
-          MemberCreate(
-            input: input 
-          ) {
-            id
-            name
-            active
-          }
-      }
-      `;
-    },
+    //   return gql` 
+    //     mutation(
+    //     ) {
+    //       __typename
+    //       MemberCreate(
+    //         input: input 
+    //       ) {
+    //         id
+    //         name
+    //         active
+    //       }
+    //   }
+    //   `;
+    // },
     async mutateUser() {
       const variables = {
         email: this.user.email,
@@ -208,7 +208,7 @@ export default {
 
       const {data} = await this.$graphql.request(CREATE_MEMBER, variables);
       if (data) {
-        alert('Ajout realisé !!')
+        alert('Ajout réalisé !!')
       }
     },
   },
