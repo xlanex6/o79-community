@@ -1,6 +1,6 @@
 <template>
-  <div class="w-full flex min-h-screen relative">
-    <div class="w-2/3">
+  <div class="w-full sm:flex min-h-screen relative">
+    <div class="sm:w-2/3 px-1">
       <h1 class="my-12 px-12 text-3xl font-bold uppercase">Ajout de membre</h1>
       <div
         class="max-w-xl m-auto mb-8"
@@ -61,7 +61,7 @@
 
     </div>
 
-    <div class="w-1/3 bg-red-500 px-8 pt-12">
+    <div class="sm:w-1/3 bg-red-500 px-8 pt-12">
 
       <div class="sticky top-12">
         <h3 class="font-bold text-xl mb-4 text-white">Aperçu</h3>
@@ -78,7 +78,6 @@
 
 <script>
 import CREATE_MEMBER from "@/graphql/CREATE_MEMBER.gql";
-import { gql } from "graphql-request";
 export default {
   name: "ADD_MEMBER",
   data() {
@@ -176,7 +175,7 @@ export default {
 
       try {
         const { MemberCreate } = await this.$graphql.request(CREATE_MEMBER, variables);
-        if ( MemberCreate.id) {
+        if ( !!MemberCreate.id) {
           this.$router.push('/merci')
         }
       } catch (error) {

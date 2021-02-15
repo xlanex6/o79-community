@@ -1,9 +1,9 @@
 <template>
-  <header class="relative text-center h-64 bg-gradient-to-b from-red-600 to-red-700 text-white flex items-center 
-   justify-between border-black border-b-2">
+  <header class="relative text-center h-64 bg-gradient-to-b from-red-600 to-red-700 text-white block sm:flex sm:items-center 
+   sm:justify-between border-black border-b-2">
 
     <a
-      class=" text-white hover:text-red-200 flex uppercase items-center w-48"
+      class=" text-white hover:text-red-200 flex uppercase items-center w-48 sm:text-sm text-xs"
       href="https://o79.fr/"
     >
       <svg

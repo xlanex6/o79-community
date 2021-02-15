@@ -12,7 +12,8 @@
               </h3>
               <div class="mt-2 max-w-xl text-sm text-gray-500">
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur, libero. Illum suscipit amet labore saepe.
+                  Merci pour ton enregistrement. <br>
+Maintenant, y'a plus qu'à aller consulter l'annuaire sur le site ō79
                 </p>
               </div>
             </div>
