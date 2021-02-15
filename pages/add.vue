@@ -46,7 +46,7 @@
         <p
           class="mt-2 text-sm text-gray-500"
           id="avatar"
-        >Copier l'adresse de votre photo de Facebook, Twitter ou autre</p>
+        >Copier l'adresse de votre photo de Facebook, Twitter ou LinkedIn</p>
       </div>
 
       <div class="flex justify-center mb-12">
@@ -64,7 +64,7 @@
     <div class="w-1/3 bg-red-500 px-8 pt-12">
 
       <div class="sticky top-12">
-        <h3 class="font-bold text-xl mb-4 text-white">Apérçu</h3>
+        <h3 class="font-bold text-xl mb-4 text-white">Aperçu</h3>
         <user
           :user='user'
           class=""
@@ -89,14 +89,14 @@ export default {
           placeholder: "Jean Michel",
           model: "firstName",
           type: "text",
-          description: "prénom",
+          description: "",
         },
         {
           label: "Nom",
           placeholder: "MACHIN",
           model: "lastName",
           type: "text",
-          description: "mettez le prénom puis votre NOM",
+          description: "",
         },
         {
           label: "Titre",
@@ -125,14 +125,14 @@ export default {
           placeholder: "votre@email.com",
           model: "email",
           type: "email",
-          description: "Votre email sera pubique",
+          description: "Votre email sera publique",
         },
         {
           label: "Téléphone",
           placeholder: "06 12 34 56 78",
           model: "phone",
-          type: "number",
-          description: "Votre téléphone sera pubique",
+          type: "text",
+          description: "Votre téléphone sera publique",
         },
       ],
       user: {
