@@ -54,7 +54,7 @@ export default {
   },
   async asyncData({ $graphql }) {
     const data = await $graphql.request(ALL_MEMBERS);
-    const users = await data.AllMembers;
+    const users = await data.AllMembers.sort(() => Math.random() - 0.5);
 
     const options = {
       keys: [
